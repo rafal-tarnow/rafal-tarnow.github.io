@@ -27,12 +27,11 @@
 	camera.position.x = window.innerWidth/2;
 	camera.position.y = -window.innerHeight/2;
 	camera.position.z = 1000;	
-	//var aspectRatio = window.innerWidth / window.innerHeight;
 
-	const camera_ortho = new THREE.OrthographicCamera(0, window.innerWidth, 0, -window.innerHeight, -1000, 1000)
+	const camera_ortho = new THREE.OrthographicCamera(0, window.innerWidth*2, 0, -window.innerHeight*2, -1000, 1000)
 
         const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(window.innerWidth*2, window.innerHeight*2);
         document.body.appendChild(renderer.domElement);
 
 	// controls
