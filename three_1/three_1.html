@@ -16,6 +16,7 @@
 
 
 	//const near = 1000;
+	let isPerspectiveCamera = true;
 
         // Inicjalizacja sceny, kamery i renderera
 
@@ -28,7 +29,7 @@
 	camera.position.z = 1000;	
 	//var aspectRatio = window.innerWidth / window.innerHeight;
 
-	//const camera = new THREE.OrthographicCamera(0, window.innerWidth, 0, -window.innerHeight, -1000, 1000)
+	const camera_ortho = new THREE.OrthographicCamera(0, window.innerWidth, 0, -window.innerHeight, -1000, 1000)
 
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -76,12 +77,23 @@
 	scene.add( helper );
 
 
+        // Toggle camera 'c'
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'c') {
+                isPerspectiveCamera = !isPerspectiveCamera;
+            }
+        });
+
         // Animacja obrotu kuli
         function animate() {
             requestAnimationFrame(animate);
             rectangle.rotation.x += 0.01;
             rectangle.rotation.y += 0.01;
-            renderer.render(scene, camera);
+            if (isPerspectiveCamera) {
+            	renderer.render(scene, camera);
+	    }else{
+		renderer.render(scene, camera_ortho);
+	    }
         }
         animate();
     </script>
