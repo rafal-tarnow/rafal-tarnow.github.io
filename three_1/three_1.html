@@ -77,12 +77,25 @@
 	scene.add( helper );
 
 
-        // Toggle camera 'c'
+        // Toggle camera on 'c'
+
         document.addEventListener('keydown', function (event) {
             if (event.key === 'c') {
-                isPerspectiveCamera = !isPerspectiveCamera;
+                toggleCamera();
             }
         });
+
+        // Toggle camera on touch
+
+        document.addEventListener('touchstart', function (event) {
+            toggleCamera();
+        });
+
+        // Function to toggle camera
+
+        function toggleCamera() {
+            isPerspectiveCamera = !isPerspectiveCamera;
+        }
 
         // Animacja obrotu kuli
         function animate() {
