@@ -1,79 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Three.js Example</title>
     <style>
-        body { margin: 0; }
-        canvas { display: block; }
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            display: block;
+        }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.js"></script>
 </head>
+
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    //<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/OrbitControls.min.js"></script>
-    <script>
 
 
-	//const near = 1000;
-	let isPerspectiveCamera = true;
+
+    <script type="module">
+
+        import { OrbitControls } from "https://threejs.org/examples/jsm/controls/OrbitControls.js";
+
+        //const near = 1000;
+        let isPerspectiveCamera = true;
 
         // Inicjalizacja sceny, kamery i renderera
 
         const scene = new THREE.Scene();
-	scene.background = new THREE.Color( 0xf0f0f0 );
+        scene.background = new THREE.Color(0xf0f0f0);
 
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
-	camera.position.x = window.innerWidth/2;
-	camera.position.y = -window.innerHeight/2;
-	camera.position.z = 1000;	
+        camera.position.x = window.innerWidth / 2;
+        camera.position.y = -window.innerHeight / 2;
+        camera.position.z = 1000;
 
-	const camera_ortho = new THREE.OrthographicCamera(0, window.innerWidth*2, 0, -window.innerHeight*2, -1000, 1000)
+        const camera_ortho = new THREE.OrthographicCamera(0, window.innerWidth * 2, 0, -window.innerHeight * 2, -1000, 1000)
 
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-	// controls
+        // controls
 
-	//const controls = new THREE.OrbitControls( camera, renderer.domElement );
-	//controls.minDistance = 20;
-	//controls.maxDistance = 50;
-	//controls.maxPolarAngle = Math.PI / 2;
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.minDistance = 20;
+        controls.maxDistance = 50;
+        controls.maxPolarAngle = Math.PI / 2;
 
-	const textureLoader = new THREE.TextureLoader();
+        const textureLoader = new THREE.TextureLoader();
 
         // babbon rectangle
 
         const texture = textureLoader.load('https://static.wikia.nocookie.net/villains/images/b/b7/I.R._Baboon.jpg');
-        const geometry = new THREE.PlaneGeometry( 200, 200 );
+        const geometry = new THREE.PlaneGeometry(200, 200);
         const material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
         const rectangle = new THREE.Mesh(geometry, material);
-	rectangle.position.x = 100;
-	rectangle.position.y = -100;
-        scene.add(rectangle); 
+        rectangle.position.x = 100;
+        rectangle.position.y = -100;
+        scene.add(rectangle);
 
         // bbc rectangle
 
         const bbc_texture = textureLoader.load('./bbc.png');
-        const bbc_geometry = new THREE.PlaneGeometry( 1920, 1080 );
+        const bbc_geometry = new THREE.PlaneGeometry(1920, 1080);
         const bbc_material = new THREE.MeshBasicMaterial({ map: bbc_texture, side: THREE.DoubleSide });
         const bbc_rectangle = new THREE.Mesh(bbc_geometry, bbc_material);
-	bbc_rectangle.position.x = 1920/2;
-	bbc_rectangle.position.y = -1080/2;
-        scene.add(bbc_rectangle); 
+        bbc_rectangle.position.x = 1920 / 2;
+        bbc_rectangle.position.y = -1080 / 2;
+        scene.add(bbc_rectangle);
 
-	// helper
+        // helper
 
-	scene.add( new THREE.AxesHelper( 1000 ) );
+        scene.add(new THREE.AxesHelper(1000));
 
-	//grid helper
+        //grid helper
 
-	const helper = new THREE.GridHelper( 4000, 400 );
-	helper.position.y = 0;
-	helper.material.opacity = 0.25;
-	helper.material.transparent = true;
-	scene.add( helper );
+        const helper = new THREE.GridHelper(4000, 400);
+        helper.position.y = 0;
+        helper.material.opacity = 0.25;
+        helper.material.transparent = true;
+        scene.add(helper);
 
 
         // Toggle camera on 'c'
@@ -102,12 +112,13 @@
             rectangle.rotation.x += 0.01;
             rectangle.rotation.y += 0.01;
             if (isPerspectiveCamera) {
-            	renderer.render(scene, camera);
-	    }else{
-		renderer.render(scene, camera_ortho);
-	    }
+                renderer.render(scene, camera);
+            } else {
+                renderer.render(scene, camera_ortho);
+            }
         }
         animate();
     </script>
 </body>
+
 </html>
