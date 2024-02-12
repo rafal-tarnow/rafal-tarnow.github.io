@@ -1,7 +1,14 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { FlyControls } from 'three/addons/controls/FlyControls.js';
 
 let isPerspectiveCamera = false;
+
+const MARGIN = 0;
+let SCREEN_HEIGHT = window.innerHeight - MARGIN * 2;
+let SCREEN_WIDTH = window.innerWidth;
+
+const clock = new THREE.Clock();
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xf0f0f0);
@@ -19,6 +26,8 @@ camera.position.z = 1000;
 
 const camera_ortho = new THREE.OrthographicCamera(0, window.innerWidth, 0, -window.innerHeight, -1000, 1000)
 
+
+
 //renderer
 
 const renderer = new THREE.WebGLRenderer();
@@ -26,12 +35,24 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 document.body.appendChild(renderer.domElement);
 
+
+//fly controls
+
+const controls = new FlyControls( camera, renderer.domElement );
+controls.movementSpeed = 1000;
+controls.domElement = renderer.domElement;
+controls.rollSpeed = Math.PI / 6;
+controls.dragToLook = true;
+
+//controls.autoForward = false;
+controls.dragToLook = true;
+
 // controls
 
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.minDistance = 20;
-controls.maxDistance = 50;
-controls.maxPolarAngle = Math.PI / 2;
+// const controls = new OrbitControls(camera, renderer.domElement);
+// controls.minDistance = 20;
+// controls.maxDistance = 50;
+// controls.maxPolarAngle = Math.PI / 2;
 
 
 
@@ -115,10 +136,15 @@ function toggleCamera() {
 }
 
 function animate() {
+	const delta = clock.getDelta();
+
 	requestAnimationFrame(animate);
 
 	cube.rotation.x += 0.01;
 	cube.rotation.y += 0.01;
+
+	
+	controls.update( delta );
 
 	if (isPerspectiveCamera) {
 		renderer.render(scene, camera);
