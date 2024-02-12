@@ -50,7 +50,7 @@ scene.add(babbon_rectangle);
 
 // bbc rectangle
 
-const bbc_texture = textureLoader.load('/images/bbc.png');
+const bbc_texture = textureLoader.load('/T_Engine/dist/images/bbc.png');
 bbc_texture.colorSpace = THREE.SRGBColorSpace
 const bbc_geometry = new THREE.PlaneGeometry(1920, 1080);
 const bbc_material = new THREE.MeshBasicMaterial({ map: bbc_texture, side: THREE.DoubleSide });
