@@ -89,8 +89,23 @@ document.addEventListener('keydown', function (event) {
 
 // Toggle camera on touch
 
-document.addEventListener('touchstart', function (event) {
-	toggleCamera();
+// document.addEventListener('touchstart', function (event) {
+// 	toggleCamera();
+// });
+
+
+let lastTouchTime = 0;
+const doubleTapDelay = 300; // czas (w milisekundach), który uznajesz za double tap
+
+document.addEventListener('touchstart', function(event) {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTouchTime;
+    if (tapLength < doubleTapDelay && tapLength > 0) {
+        // double tap detected
+        toggleCamera();
+        event.preventDefault(); // zapobiega domyślnym działaniom przeglądarki
+    }
+    lastTouchTime = currentTime;
 });
 
 // Function to toggle camera
