@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { FlyControls } from 'three/addons/controls/FlyControls.js';
 
-let isPerspectiveCamera = false;
+let isPerspectiveCamera = true;
 
 const MARGIN = 0;
 let SCREEN_HEIGHT = window.innerHeight - MARGIN * 2;
@@ -74,17 +74,20 @@ scene.add(babbon_rectangle);
 const bbc_texture = textureLoader.load('./images/bbc.png');
 bbc_texture.colorSpace = THREE.SRGBColorSpace
 const bbc_geometry = new THREE.PlaneGeometry(1920, 1080);
-const bbc_material = new THREE.MeshBasicMaterial({ map: bbc_texture, side: THREE.DoubleSide });
+const bbc_material = new THREE.MeshBasicMaterial({ map: bbc_texture, side: THREE.DoubleSide, transparent: true, opacity: 1.0 });
 const bbc_rectangle = new THREE.Mesh(bbc_geometry, bbc_material);
 bbc_rectangle.position.x = 1920 / 2;
 bbc_rectangle.position.y = -1080 / 2;
+bbc_rectangle.position.z = 10;
 scene.add(bbc_rectangle);
 
 //green box
 
-const geometry = new THREE.BoxGeometry(30, 30, 30);
+const geometry = new THREE.BoxGeometry(200, 200, 200);
 const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 const cube = new THREE.Mesh(geometry, material);
+cube.position.x = 500;
+cube.position.y = -500;
 scene.add(cube);
 
 // helper
@@ -99,6 +102,26 @@ helper.position.y = 0;
 helper.material.opacity = 0.25;
 helper.material.transparent = true;
 scene.add(helper);
+
+//site
+// let site_width = 1920;
+// let site_height = 64;
+// let site_x = 0;
+// let site_y = 0;
+// const black_geometry = new THREE.PlaneGeometry( site_width, site_height );
+// const black_material = new THREE.MeshBasicMaterial( {color: 0x00.0000, side: THREE.DoubleSide} );
+// const black_plane = new THREE.Mesh( black_geometry, black_material );
+// black_plane.position.setX(site_x + site_width/2);
+// black_plane.position.setY(-site_y - site_height/2);
+// scene.add( black_plane );
+
+//Toggle bbc background
+
+document.addEventListener('keydown', function (event) {
+	if (event.key === 'x') {
+		bbc_rectangle.visible = !bbc_rectangle.visible
+	}
+});
 
 // Toggle camera on 'c'
 
@@ -143,6 +166,8 @@ function animate() {
 	cube.rotation.x += 0.01;
 	cube.rotation.y += 0.01;
 
+	babbon_rectangle.rotation.x += 0.01;
+	babbon_rectangle.rotation.y += 0.01;
 	
 	controls.update( delta );
 
