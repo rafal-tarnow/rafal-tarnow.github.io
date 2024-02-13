@@ -2,6 +2,10 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { FlyControls } from 'three/addons/controls/FlyControls.js';
 
+import Rectangle from './engine/Rectangle.js' //import default element
+
+//import { Rectangle } from './engine/Rectangle' //import specifilc element
+
 let isPerspectiveCamera = true;
 
 const MARGIN = 0;
@@ -25,7 +29,6 @@ camera.position.z = 1000;
 //ortho camera
 
 const camera_ortho = new THREE.OrthographicCamera(0, window.innerWidth, 0, -window.innerHeight, -1000, 1000)
-
 
 
 //renderer
@@ -104,16 +107,19 @@ helper.material.transparent = true;
 scene.add(helper);
 
 //site
-// let site_width = 1920;
-// let site_height = 64;
-// let site_x = 0;
-// let site_y = 0;
-// const black_geometry = new THREE.PlaneGeometry( site_width, site_height );
-// const black_material = new THREE.MeshBasicMaterial( {color: 0x00.0000, side: THREE.DoubleSide} );
-// const black_plane = new THREE.Mesh( black_geometry, black_material );
-// black_plane.position.setX(site_x + site_width/2);
-// black_plane.position.setY(-site_y - site_height/2);
-// scene.add( black_plane );
+
+const rect = new Rectangle(scene);
+rect.setX(100);
+rect.setY(100);
+rect.print();
+
+const rect_1 = new Rectangle(scene);
+rect_1.setX(100);
+rect_1.setY(400);
+rect_1.print();
+
+
+
 
 //Toggle bbc background
 
