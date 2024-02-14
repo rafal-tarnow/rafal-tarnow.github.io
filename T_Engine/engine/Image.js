@@ -1,29 +1,28 @@
 import * as THREE from 'three';
 
-class Rectangle {
+class Image {
 
     constructor(scene) {
         this.width = 100;
         this.height = 100;
-        this.position = new THREE.Vector3(50,-75,0)
+        this.position = new THREE.Vector3(50, -75, 0)
         this.scene = scene;
-        const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-        this.color = randomColor; 
 
-        const geometry = new THREE.PlaneGeometry( this.width, this.height );
-        this.material = new THREE.MeshBasicMaterial( {color: this.color, side: THREE.DoubleSide} );
-        this.mesh = new THREE.Mesh(geometry, this.material );
+        const geometry = new THREE.PlaneGeometry(this.width, this.height);
+        const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+        const material = new THREE.MeshBasicMaterial({ color: randomColor, side: THREE.DoubleSide });
+        this.mesh = new THREE.Mesh(geometry, material);
         this.mesh.position.setX(this.position.x);
         this.mesh.position.setY(this.position.y);
         this.mesh.position.setZ(this.position.z);
-        this.mesh.translateX(this.width/2);
-        this.mesh.translateY(-this.height/2);
-        scene.add( this.mesh );
+        this.mesh.translateX(this.width / 2);
+        this.mesh.translateY(-this.height / 2);
+        scene.add(this.mesh);
 
         this.addDebugBoundingBox();
     }
 
-    calculateShape(){
+    calculateShape() {
         this.shape = new THREE.Shape();
 
         (function qmlRect(ctx, x, y, width, height) {
@@ -37,7 +36,7 @@ class Rectangle {
 
     addDebugBoundingBox() {
         this.calculateShape();
-        
+
         const geometry = new THREE.ShapeGeometry(this.shape);
         const material = new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.DoubleSide });
         this.debugMesh = new THREE.LineLoop(geometry, material);
@@ -67,66 +66,63 @@ class Rectangle {
         mgroup.add(line);
     }
 
-    setX(x){
+    setX(x) {
         this.position.setX(x);
 
         this.mesh.position.setX(this.position.x);
-        this.mesh.translateX(this.width/2);
+        this.mesh.translateX(this.width / 2);
 
         this.debugMesh.position.setX(this.position.x);
     }
-
-    setY(y){
+    setY(y) {
         this.position.setY(-y);
 
         this.mesh.position.setY(this.position.y);
-        this.mesh.translateY(-this.height/2);
+        this.mesh.translateY(-this.height / 2);
 
         this.debugMesh.position.setY(this.position.y);
     }
-
-    setHeight(height){
+    setHeight(height) {
         this.height = height;
-    
+
         this.updateRectGeometry();
         this.updateDbgGeometry();
     }
 
-    setWidth(width){
+    setWidth(width) {
         this.width = width;
-    
+
         this.updateRectGeometry();
         this.updateDbgGeometry();
     }
 
-
-    updateRectGeometry(){
-                // Aktualizacja geometrii prostokąta
+    updateRectGeometry() {
+        // Aktualizacja geometrii prostokąta
         this.mesh.geometry.dispose(); // Usunięcie starej geometrii
         this.mesh.geometry = new THREE.PlaneGeometry(this.width, this.height);
         this.mesh.position.setX(this.position.x);
         this.mesh.position.setY(this.position.y);
         this.mesh.position.setZ(this.position.z);
-        this.mesh.translateX(this.width/2);
-        this.mesh.translateY(-this.height/2);
+        this.mesh.translateX(this.width / 2);
+        this.mesh.translateY(-this.height / 2);
     }
 
-    updateDbgGeometry(){
-                this.calculateShape();
+    updateDbgGeometry() {
+        this.calculateShape();
         const geometry = new THREE.ShapeGeometry(this.shape);
         this.debugMesh.geometry.dispose(); // Usunięcie starej geometrii
         this.debugMesh.geometry = geometry;
     }
 
-    setColor(color){
-        this.color = color;
-        // Aktualizacja koloru materiału obrysu prostokąta
-        this.mesh.material.color.set(color);
-    }
+    setSource(source) {
+        this.source = source;
 
-    print() {
-       console.log("Hi, 1 I'm Rectangle.");
+        const textureLoader = new THREE.TextureLoader();
+        const texture = textureLoader.load(source);
+        texture.colorSpace = THREE.SRGBColorSpace
+        const material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
+        this.mesh.material = material;
     }
 }
 
-export default Rectangle;
+export default Image;
