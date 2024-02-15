@@ -43,11 +43,10 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 document.body.appendChild(renderer.domElement);
 
-
 // controls
 
-const controls = new OrbitControls( camera, renderer.domElement );
-controls.target.set( SCREEN_WIDTH/2, -SCREEN_HEIGHT/2, 0 );
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(SCREEN_WIDTH / 2, -SCREEN_HEIGHT / 2, 0);
 controls.update();
 
 
@@ -192,16 +191,32 @@ document.addEventListener('keydown', function (event) {
 	}
 });
 
+//Camera button
+
+const camButton = document.getElementById('camButton');
+camButton.addEventListener('click', () => {
+	isPerspectiveCamera = !isPerspectiveCamera;
+});
+
 //toggle grid
+
+const gridButton = document.getElementById('gridButton');
+gridButton.addEventListener('click', () => {
+	toggleGrid();
+});
 
 document.addEventListener('keydown', function (event) {
 	if (event.key === 'z') {
-		isGridVisible = !isGridVisible;
-
-		helper.visible = isGridVisible;
-		helper_10.visible = isGridVisible;
+		toggleGrid();
 	}
 });
+
+function toggleGrid() {
+	isGridVisible = !isGridVisible;
+
+	helper.visible = isGridVisible;
+	helper_10.visible = isGridVisible;
+}
 
 // Toggle camera on 'c'
 
