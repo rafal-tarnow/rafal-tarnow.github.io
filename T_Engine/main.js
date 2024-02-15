@@ -16,6 +16,9 @@ const MARGIN = 0;
 let SCREEN_HEIGHT = window.innerHeight - MARGIN * 2;
 let SCREEN_WIDTH = window.innerWidth;
 
+let container = document.createElement( 'div' );
+document.body.appendChild( container );
+
 const clock = new THREE.Clock();
 
 const scene = new THREE.Scene();
@@ -41,7 +44,7 @@ const camera_ortho = new THREE.OrthographicCamera(0, window.innerWidth, 0, -wind
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
-document.body.appendChild(renderer.domElement);
+container.appendChild(renderer.domElement);
 
 // controls
 
