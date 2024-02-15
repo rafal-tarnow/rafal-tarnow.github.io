@@ -26,7 +26,7 @@ scene.background = new THREE.Color(0xffffff);
 
 //perspective camera
 
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 8000);
 camera.position.x = window.innerWidth / 2;
 camera.position.y = -window.innerHeight / 2;
 camera.position.z = 1000;
