@@ -91,13 +91,12 @@ scene.add(cube);
 
 scene.add(new THREE.AxesHelper(1000));
 
-
 //grid helper 100
 
 const helper = new THREE.GridHelper(4000, 40);
 helper.visible = isGridVisible;
 helper.position.y = 0;
-helper.position.z = 10;
+helper.position.z = 0;
 helper.rotateX(THREE.MathUtils.degToRad(90));
 helper.material.opacity = 0.75;
 helper.material.transparent = true;
@@ -108,11 +107,12 @@ scene.add(helper);
 const helper_10 = new THREE.GridHelper(4000, 400);
 helper_10.visible = isGridVisible;
 helper_10.position.y = 0;
-helper_10.position.z = 10;
+helper_10.position.z = 0;
 helper_10.rotateX(THREE.MathUtils.degToRad(90));
-helper_10.material.opacity = 0.25;
+helper_10.material.opacity = 0.5;
 helper_10.material.transparent = true;
 scene.add(helper_10);
+
 
 //site
 
@@ -180,7 +180,51 @@ image_8.setY(573);
 image_8.setWidth(403);
 image_8.setHeight(226);
 
-const text_1 = new TextOne(scene);
+const text_1 = new TextOne(scene, 'Sign in',9.2, 0xffffff);
+text_1.setX(494);
+text_1.setY(37);
+
+const text_2 = new TextOne(scene, 'Home',9.2, 0xffffff);
+text_2.setX(675);
+text_2.setY(37)
+
+const text_3 = new TextOne(scene, 'News',9.2, 0xffffff);
+text_3.setX(755);
+text_3.setY(37);
+
+const text_4 = new TextOne(scene, 'Sport',9.2, 0xffffff);
+text_4.setX(830);
+text_4.setY(37);
+
+const text_5 = new TextOne(scene, 'Earth',9.2, 0xffffff);
+text_5.setX(907);
+text_5.setY(37);
+
+const text_6 = new TextOne(scene, 'Reel',9.2, 0xffffff);
+text_6.setX(982);
+text_6.setY(37);
+
+const text_7 = new TextOne(scene, 'Worklife',9.2, 0xffffff);
+text_7.setX(1050);
+text_7.setY(37);
+
+const text_8 = new TextOne(scene, 'Travel',9.2, 0xffffff);
+text_8.setX(1146);
+text_8.setY(37);
+
+const text_9 = new TextOne(scene, 'Culture',9.2, 0xffffff);
+text_9.setX(1225);
+text_9.setY(37);
+
+const text_10 = new TextOne(scene, 'Search BBC',9.2, 0xffffff);
+text_10.setX(1387);
+text_10.setY(37);
+
+const text_11 = new TextOne(scene,'Welcome to BBC.com',15.7, 0x4a4a4a);
+text_11.setX(327);
+text_11.setY(114);
+
+
 
 
 //Toggle bbc background

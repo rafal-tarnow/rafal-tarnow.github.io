@@ -74,6 +74,7 @@ class Image {
 
         this.debugMesh.position.setX(this.position.x);
     }
+    
     setY(y) {
         this.position.setY(-y);
 
@@ -82,6 +83,7 @@ class Image {
 
         this.debugMesh.position.setY(this.position.y);
     }
+
     setHeight(height) {
         this.height = height;
 

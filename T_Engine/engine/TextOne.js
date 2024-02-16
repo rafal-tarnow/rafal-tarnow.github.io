@@ -6,16 +6,19 @@ import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 
 class TextOne{
-    constructor(scene){
+    constructor(scene, text, size, color){
         this.scene = scene;
-        this.text = 'Welcome to BBC.com';
+        this.text = text;
         this.font = null;
+        this.mesh = null;
         this.height = 0,
-        this.size = 15.7,
+        this.size = size,
         this.hover = 30,
         this.curveSegments = 4,
         this.bevelThickness = 2,
         this.bevelSize = 1.5;
+        this.color = color;
+        this.mesh = new THREE.Mesh();
 
         const loader = new TTFLoader();
 
@@ -48,17 +51,27 @@ class TextOne{
         textGeo.computeVertexNormals();
 
         const centerOffset = - 0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
-        const material = new THREE.MeshBasicMaterial({ color: 0x4a4a4a, side: THREE.DoubleSide });
-        const textMesh1 = new THREE.Mesh( textGeo, material );
-
+        const material = new THREE.MeshBasicMaterial({ color: this.color, side: THREE.DoubleSide });
+   
+        const matrix = this.mesh.matrix.clone();
+        this.mesh.geometry.dispose();
+        this.mesh.geometry = textGeo;
+        this.mesh.material = material;
+        this.mesh.applyMatrix4(matrix);
+  
         //textMesh1.position.x = centerOffset;
         //textMesh1.position.y = this.hover;
-        textMesh1.position.x = 327;
-        textMesh1.position.y = -114;
-        textMesh1.position.z = 0;
+        this.mesh.position.setZ(0.15);
 
+        this.scene.add( this.mesh );
+    }
 
-        this.scene.add( textMesh1 );
+    setX(x) {
+        this.mesh.position.setX(x);
+    }
+    
+    setY(y) {
+        this.mesh.position.setY(-y);
     }
 
 }
