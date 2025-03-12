@@ -9,11 +9,10 @@ Window {
 
     width: Screen.width
     height: Screen.height
-    flags: Qt.Window | Qt.FramelessWindowHint | Qt.WindowStaysOnBottomHint //| Qt.X11BypassWindowManagerHint
-    visibility: Window.FullScreen
+
     
-    Rectangle{
+    Image{
     anchors.fill: parent
-    color: "red"
+    source: "https://as1.ftcdn.net/v2/jpg/04/97/31/24/1000_F_497312401_fmQQiKYB8QsgZNsdXveTMLLYvMwe3lV9.jpg"
     }
 }
