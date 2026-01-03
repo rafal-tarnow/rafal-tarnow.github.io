@@ -83615,7 +83615,7 @@ A.aud.prototype={
 $1(a){return 0},
 $S:524}
 A.atC.prototype={
-$1(a){return A.azB(A.ayT("http://10.139.19.47:8003",B.ja,null,B.ja,null))},
+$1(a){return A.azB(A.ayT("https://dev-sentences.rafal-kruszyna.org",B.ja,null,B.ja,null))},
 $S:525}
 A.LY.prototype={
 jr(a,b){var s=null,r=t.S,q=b.h7($.auH(),r),p=A.c([B.Eg,A.E5(B.FB,0,q===0,"Og\u0142oszenia parafialne"),A.E5(B.FC,1,q===1,"Slownik"),A.E5(B.FF,2,q===2,"Slowka"),A.E5(B.Ft,3,q===3,"Zwroty"),A.E5(B.FE,4,q===4,"Test"),A.E5(B.Fx,5,q===5,"Health Check")],t.p)
@@ -83714,7 +83714,7 @@ $1(a){return a===200},
 $S:153}
 A.Oh.prototype={
 M(a){var s=null
-return A.awe(s,s,A.awk(A.iA(A.c([new A.bV(B.je,A.cH("Dev servers",s,s,s,B.l7,s,s),s),B.NL,B.NJ,B.NG,B.hU,new A.bV(B.je,A.cH("Production",s,s,s,B.l7,s,s),s),B.NK,B.ND,B.NE,B.hU,new A.bV(B.je,A.cH("Production local",s,s,s,B.l7,s,s),s),B.NI,B.NF,B.NH],t.p),B.bx,B.ac,B.aR),B.jd),s,s,s)}}
+return A.awe(s,s,A.awk(A.iA(A.c([new A.bV(B.je,A.cH("Dev servers",s,s,s,B.l7,s,s),s),B.NL,B.NI,B.NK,B.hU,new A.bV(B.je,A.cH("Production",s,s,s,B.l7,s,s),s),B.NJ,B.ND,B.NE,B.hU,new A.bV(B.je,A.cH("Production local",s,s,s,B.l7,s,s),s),B.NH,B.NF,B.NG],t.p),B.bx,B.ac,B.aR),B.jd),s,s,s)}}
 A.i7.prototype={
 jr(a,b){var s=null,r=this.e,q=t.p
 return A.az5(new A.bV(B.EN,A.ns(A.c([this.a4x(b.h7($.aIE().$1(r),t._e)),B.OY,A.avr(A.iA(A.c([A.cH(this.f,s,s,s,B.TU,s,s),A.cH(r,s,B.aN,s,A.ie(s,s,B.cc,s,s,s,s,s,s,s,s,12,s,s,s,s,s,!0,s,s,s,s,s,s,s,s),s,s)],q),B.bx,B.ac,B.aR))],q),B.ak,B.ac,B.aR,0),s),2,B.nc)},
@@ -92388,11 +92388,11 @@ B.NC=new A.jR(B.HW,!1,null,1,1)
 B.ND=new A.i7("https://maia-users.rafal-kruszyna.org","users-microservice",null)
 B.NE=new A.i7("https://maia-sentences.rafal-kruszyna.org","sentences-microservice",null)
 B.NF=new A.i7("http://192.168.0.102:8002","users-microservice",null)
-B.NG=new A.i7("http://10.139.19.47:8003","sentences-microservice",null)
-B.NH=new A.i7("http://192.168.0.102:8003","sentences-microservice",null)
-B.NI=new A.i7("http://192.168.0.102:8001","captcha-microservice",null)
-B.NJ=new A.i7("http://127.0.0.1:8002","users-microservice",null)
-B.NK=new A.i7("https://maia-captcha.rafal-kruszyna.org","captcha-microservice",null)
+B.NG=new A.i7("http://192.168.0.102:8003","sentences-microservice",null)
+B.NH=new A.i7("http://192.168.0.102:8001","captcha-microservice",null)
+B.NI=new A.i7("http://127.0.0.1:8002","users-microservice",null)
+B.NJ=new A.i7("https://maia-captcha.rafal-kruszyna.org","captcha-microservice",null)
+B.NK=new A.i7("https://dev-sentences.rafal-kruszyna.org","sentences-microservice",null)
 B.NL=new A.i7("http://127.0.0.1:8001","captcha-microservice",null)
 B.yq=new A.ex([B.bD,B.hm,B.kq],A.al("ex<le>"))
 B.NN=new A.ex([10,11,12,13,133,8232,8233],t.Ih)
