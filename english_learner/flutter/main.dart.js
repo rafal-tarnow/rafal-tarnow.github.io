@@ -90239,7 +90239,7 @@ var $async$xh=A.H(function(c,a0){if(c===1){o.push(a0)
 s=p}for(;;)switch(s){case 0:p=4
 h=t.z
 s=7
-return A.F(n.a.Dy("/api/sentences/",A.au(["page",a,"per_page",b],t.N,h),h),$async$xh)
+return A.F(n.a.Dy("/api/sentences/me",A.au(["page",a,"per_page",b],t.N,h),h),$async$xh)
 case 7:m=a0
 l=m.a
 k=J.h8(l,"data")
