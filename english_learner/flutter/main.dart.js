@@ -29333,10 +29333,10 @@ if(B.c.p(a,"Invalid captcha"))return r
 if(B.c.p(a,"Invalid CAPTCHA answer"))return r
 if(B.c.p(a,"Email already registered"))return"Ten adres email jest ju\u017c zarejestrowany."
 if(B.c.p(a,"value is not a valid email address"))return"Niepoprawny format adresu email."
-if(B.c.p(a,"Password must be at least 6 characters long"))return"Has\u0142o musi mie\u0107 co najmniej 6 znak\xf3w."
+if(B.c.p(a,"Password must be at least 8 characters long"))return"Has\u0142o musi mie\u0107 co najmniej 8 znak\xf3w."
 if(B.c.p(a,"Password must contain at least one digit"))return"Has\u0142o musi zawiera\u0107 co najmniej jedn\u0105 cyfr\u0119."
 if(B.c.p(a,"Password must contain at least one letter"))return"Has\u0142o musi zawiera\u0107 co najmniej jedn\u0105 liter\u0119."
-if(B.c.p(a,"String should have at least 6 characters"))return"Warto\u015b\u0107 jest za kr\xf3tka (wymagane min. 6 znak\xf3w)."
+if(B.c.p(a,"String should have at least 8 characters"))return"Warto\u015b\u0107 jest za kr\xf3tka (wymagane min. 8 znak\xf3w)."
 if(B.c.p(a,"Database error: Resource is locked. Service temporarily unavailable."))return"Serwis jest chwilowo zaj\u0119ty (baza danych zablokowana). Spr\xf3buj ponownie za chwil\u0119."
 if(B.c.p(a,"Database error: Internal operation failed."))return"Wyst\u0105pi\u0142 wewn\u0119trzny b\u0142\u0105d bazy danych. Spr\xf3buj ponownie."
 return a},
@@ -91952,7 +91952,7 @@ s=A.bo("\\d",!0,!1,!1)
 r=s.b.test(a)
 s=A.bo("[a-zA-Z]",!0,!1,!1)
 q=s.b.test(a)
-if(p<6||!r||!q)return"Has\u0142o musi mie\u0107 min. 6 znak\xf3w, liter\u0119 i cyfr\u0119"
+if(p<8||!r||!q)return"Has\u0142o musi mie\u0107 min. 8 znak\xf3w, liter\u0119 i cyfr\u0119"
 return null},
 $S:40}
 A.avT.prototype={
