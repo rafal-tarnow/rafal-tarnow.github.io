@@ -29574,6 +29574,7 @@ case"es":return"\ud83c\uddea\ud83c\uddf8"
 case"de":return"\ud83c\udde9\ud83c\uddea"
 case"fr":return"\ud83c\uddeb\ud83c\uddf7"
 case"uk":return"\ud83c\uddfa\ud83c\udde6"
+case"--":return" "
 default:return"\ud83c\udf0d"}},
 iq(a){if(a instanceof A.eB)switch(a.c.a){case 0:case 1:case 2:return"Up\u0142yn\u0105\u0142 limit czasu po\u0142\u0105czenia. Sprawd\u017a internet."
 case 4:return A.aSo(a.b)
@@ -30058,7 +30059,7 @@ $S:2}
 A.aAw.prototype={
 $1(a){var s=A.dw().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/425cfb54d01a9472b3e81d9e76fd63a4a44cfbcb/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/59aa584fdf100e6c78c785d8a5b565d1de4b48ab/":s)+a},
 $S:59}
 A.PG.prototype={
 gA(a){var s=this.a
@@ -93120,7 +93121,7 @@ if(p.a){s=A.k9(o)
 if(s==null)r=q
 else{s=s.e
 r=s==null?q:s.a}s=A.eh(12)
-return new A.bd(B.p5,new A.wm(new A.aoG(o),new A.aoH(this,a,b),"Menu u\u017cytkownika",new A.M8(B.k,B.nC,B.QH,A.aY(A.LS(r==null?"en":r),q,q,q,B.a0C,q,q),A.aDm(B.kc,B.JZ,q,18),q),B.Qj,new A.ci(s,B.m),q,t.iX),q)}return new A.bd(B.p5,A.js(q,q,q,A.aDm(B.ki,A.h0(B.pK,B.bQ,q,q,20),q,18),q,q,new A.aoI(b),q,q,q,"Zaloguj si\u0119"),q)},
+return new A.bd(B.p5,new A.wm(new A.aoG(o),new A.aoH(this,a,b),"Menu u\u017cytkownika",new A.M8(B.k,B.nC,B.QH,A.aY(A.LS(r==null?"--":r),q,q,q,B.a0C,q,q),A.aDm(B.kc,B.JZ,q,18),q),B.Qj,new A.ci(s,B.m),q,t.iX),q)}return new A.bd(B.p5,A.js(q,q,q,A.aDm(B.ki,A.h0(B.pK,B.bQ,q,q,20),q,18),q,q,new A.aoI(b),q,q,q,"Zaloguj si\u0119"),q)},
 zk(a,b){return this.aeS(a,b)},
 aeS(a,b){var s=0,r=A.K(t.H)
 var $async$zk=A.G(function(c,d){if(c===1)return A.H(d,r)
