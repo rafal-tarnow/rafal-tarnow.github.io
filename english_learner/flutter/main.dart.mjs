@@ -145,11 +145,7 @@ class CompiledApp {
       EF: x0 => x0.pointerType,
       EG: (d, digits) => d.toFixed(digits),
       EH: (x0,x1) => x0.querySelector(x1),
-      EI: () => {
-        return typeof process != "undefined" &&
-               Object.prototype.toString.call(process) == "[object process]" &&
-               process.platform == "win32"
-      },
+      EI: (o, p) => p in o,
       EJ: x0 => x0.id,
       EK: x0 => x0.read(),
       F: () => new Error().stack,
@@ -160,13 +156,7 @@ class CompiledApp {
       FF: x0 => x0.pointerId,
       FG: x0 => x0.maxHeight,
       FH: (x0,x1) => { x0.title = x1 },
-      FI: () => {
-        // On browsers return `globalThis.location.href`
-        if (globalThis.location != null) {
-          return globalThis.location.href;
-        }
-        return null;
-      },
+      FI: x0 => x0.groups,
       FJ: x0 => x0.offsetHeight,
       FK: x0 => x0.body,
       G: s => JSON.stringify(s),
@@ -182,7 +172,11 @@ class CompiledApp {
       GF: x0 => x0.getCoalescedEvents(),
       GG: x0 => x0.maxWidth,
       GH: (x0,x1) => x0.vibrate(x1),
-      GI: () => new XMLHttpRequest(),
+      GI: () => {
+        return typeof process != "undefined" &&
+               Object.prototype.toString.call(process) == "[object process]" &&
+               process.platform == "win32"
+      },
       GJ: x0 => x0.offsetWidth,
       GK: (x0,x1) => new OffscreenCanvas(x0,x1),
       H: Function.prototype.call.bind(Number.prototype.toString),
@@ -193,7 +187,13 @@ class CompiledApp {
       HF: (x0,x1) => x0.getModifierState(x1),
       HG: x0 => x0.minHeight,
       HH: x0 => x0.arrayBuffer(),
-      HI: (x0,x1,x2) => x0.open(x1,x2),
+      HI: () => {
+        // On browsers return `globalThis.location.href`
+        if (globalThis.location != null) {
+          return globalThis.location.href;
+        }
+        return null;
+      },
       HJ: x0 => x0.stopPropagation(),
       HK: x0 => x0.assetBase,
       I: Function.prototype.call.bind(String.prototype.indexOf),
@@ -217,7 +217,7 @@ class CompiledApp {
         }
         return 3;
       },
-      II: (x0,x1) => x0.send(x1),
+      II: () => new XMLHttpRequest(),
       IJ: x0 => x0.disabled,
       IK: x0 => x0.loader,
       J: (s, p, i) => s.lastIndexOf(p, i),
@@ -228,7 +228,7 @@ class CompiledApp {
       JF: (x0,x1) => x0[x1],
       JG: (x0,x1) => x0.removeProperty(x1),
       JH: x0 => x0.status,
-      JI: x0 => x0.send(),
+      JI: (x0,x1,x2) => x0.open(x1,x2),
       JJ: (x0,x1) => { x0.min = x1 },
       JK: () => globalThis._flutter,
       K: (exn) => {
@@ -245,7 +245,7 @@ class CompiledApp {
       KF: x0 => x0.index,
       KG: (x0,x1) => x0.add(x1),
       KH: (x0,x1) => x0.fetch(x1),
-      KI: x0 => x0.abort(),
+      KI: (x0,x1) => x0.send(x1),
       KJ: (x0,x1) => { x0.max = x1 },
       L: o => o === undefined,
       LB: (x0,x1,x2) => new DataView(x0,x1,x2),
@@ -256,7 +256,7 @@ class CompiledApp {
       LF: s => s.toUpperCase(),
       LG: x0 => x0.data,
       LH: x0 => x0.content,
-      LI: (x0,x1,x2,x3) => x0.addEventListener(x1,x2,x3),
+      LI: x0 => x0.send(),
       LJ: (x0,x1) => { x0.disabled = x1 },
       M: o => String(o),
       MB: (o, p) => o[p],
@@ -266,7 +266,7 @@ class CompiledApp {
       MF: x0 => x0.pop(),
       MG: (x0,x1) => { x0.scrollTop = x1 },
       MH: x0 => x0.document,
-      MI: (x0,x1,x2,x3) => x0.removeEventListener(x1,x2,x3),
+      MI: x0 => x0.abort(),
       MJ: (x0,x1) => { x0.scrollLeft = x1 },
       N: (c) =>
       queueMicrotask(() => dartInstance.exports.$invokeCallback(c)),
@@ -277,7 +277,7 @@ class CompiledApp {
       NF: x0 => x0.flags,
       NG: (x0,x1,x2) => x0.setSelectionRange(x1,x2),
       NH: () => typeof dartUseDateNowForTicks !== "undefined",
-      NI: (wasmFunction,f) => finalizeWrapper(f, function(x0) { return wasmFunction(f,arguments.length,x0) }),
+      NI: (x0,x1,x2,x3) => x0.addEventListener(x1,x2,x3),
       NJ: (x0,x1) => { x0.spellcheck = x1 },
       O: (x0,x1) => x0.didCreateEngineInitializer(x1),
       OB: Function.prototype.call.bind(Object.getOwnPropertyDescriptor(DataView.prototype, 'byteLength').get),
@@ -291,7 +291,7 @@ class CompiledApp {
       OF: (a, s) => a.join(s),
       OG: (x0,x1) => { x0.value = x1 },
       OH: () => Date.now(),
-      OI: x0 => x0.upload,
+      OI: (x0,x1,x2,x3) => x0.removeEventListener(x1,x2,x3),
       OJ: (x0,x1) => { x0.disabled = x1 },
       P: (wasmFunction,f) => finalizeWrapper(f, function(x0) { return wasmFunction(f,arguments.length,x0) }),
       PB: o => o.byteOffset,
@@ -301,7 +301,7 @@ class CompiledApp {
       PF: (x0,x1) => x0.error(x1),
       PG: (x0,x1,x2) => x0.setSelectionRange(x1,x2),
       PH: () => 1000 * performance.now(),
-      PI: x0 => x0.responseURL,
+      PI: (wasmFunction,f) => finalizeWrapper(f, function(x0) { return wasmFunction(f,arguments.length,x0) }),
       PJ: (x0,x1) => x0.transferFromImageBitmap(x1),
       Q: (wasmFunction,f) => finalizeWrapper(f, function() { return wasmFunction(f,arguments.length) }),
       QB: o => o.buffer,
@@ -311,7 +311,7 @@ class CompiledApp {
       QF: () => globalThis.console,
       QG: (x0,x1) => { x0.value = x1 },
       QH: x0 => new Uint8Array(x0),
-      QI: x0 => x0.statusText,
+      QI: x0 => x0.upload,
       QJ: (x0,x1) => x0.getContext(x1),
       R: (x0,x1) => ({initializeEngine: x0,autoStart: x1}),
       RB: Function.prototype.call.bind(DataView.prototype.getUint8),
@@ -326,7 +326,7 @@ class CompiledApp {
         return s;
       },
       RH: (x0,x1,x2) => x0.slice(x1,x2),
-      RI: x0 => x0.getAllResponseHeaders(),
+      RI: x0 => x0.responseURL,
       RJ: (x0,x1) => { x0.height = x1 },
       S: (wasmFunction,f) => finalizeWrapper(f, function(x0,x1) { return wasmFunction(f,arguments.length,x0,x1) }),
       SB: (b, o) => new DataView(b, o),
@@ -363,7 +363,7 @@ class CompiledApp {
       SF: x0 => x0.blur(),
       SG: x0 => x0.value,
       SH: (x0,x1) => x0.decode(x1),
-      SI: x0 => x0.status,
+      SI: x0 => x0.statusText,
       SJ: (x0,x1) => { x0.width = x1 },
       T: x0 => new Promise(x0),
       TB: (b, o, l) => new DataView(b, o, l),
@@ -373,7 +373,7 @@ class CompiledApp {
       TF: x0 => x0.button,
       TG: x0 => x0.selectionDirection,
       TH: (x0,x1) => x0.adoptText(x1),
-      TI: x0 => x0.response,
+      TI: x0 => x0.getAllResponseHeaders(),
       TJ: x0 => x0.height,
       U: (x0,x1,x2) => x0.call(x1,x2),
       UB: Function.prototype.call.bind(DataView.prototype.getFloat64),
@@ -383,7 +383,7 @@ class CompiledApp {
       UF: x0 => x0.innerHeight,
       UG: x0 => x0.selectionStart,
       UH: x0 => x0.first(),
-      UI: (wasmFunction,f) => finalizeWrapper(f, function(x0) { return wasmFunction(f,arguments.length,x0) }),
+      UI: x0 => x0.status,
       UJ: x0 => x0.width,
       V: (constructor, args) => {
         const factoryFunction = constructor.bind.apply(
@@ -401,7 +401,7 @@ class CompiledApp {
       VF: x0 => x0.innerWidth,
       VG: x0 => x0.selectionEnd,
       VH: x0 => x0.next(),
-      VI: (x0,x1) => { x0.timeout = x1 },
+      VI: x0 => x0.response,
       VJ: x0 => x0.rasterEndMilliseconds,
       W: x0 => new Array(x0),
       WB: Function.prototype.call.bind(DataView.prototype.setFloat64),
@@ -417,7 +417,7 @@ class CompiledApp {
       WF: x0 => x0.height,
       WG: x0 => x0.value,
       WH: x0 => x0.current(),
-      WI: (x0,x1,x2) => x0.setRequestHeader(x1,x2),
+      WI: (wasmFunction,f) => finalizeWrapper(f, function(x0) { return wasmFunction(f,arguments.length,x0) }),
       WJ: x0 => x0.rasterStartMilliseconds,
       X: o => [o],
       XB: (t, s) => t.set(s),
@@ -427,7 +427,7 @@ class CompiledApp {
       XF: x0 => x0.width,
       XG: x0 => x0.selectionDirection,
       XH: (x0,x1) => new Intl.v8BreakIterator(x0,x1),
-      XI: (x0,x1) => { x0.withCredentials = x1 },
+      XI: (x0,x1) => { x0.timeout = x1 },
       XJ: x0 => x0.imageBitmaps,
       Y: (o0, o1) => [o0, o1],
       YB: Function.prototype.call.bind(DataView.prototype.setFloat32),
@@ -437,7 +437,7 @@ class CompiledApp {
       YF: x0 => x0.clientHeight,
       YG: x0 => x0.selectionStart,
       YH: x0 => x0.v8BreakIterator,
-      YI: (x0,x1) => { x0.responseType = x1 },
+      YI: (x0,x1,x2) => x0.setRequestHeader(x1,x2),
       YJ: x0 => x0.canvasKitMaximumSurfaces,
       Z: (o0, o1, o2) => [o0, o1, o2],
       ZB: Function.prototype.call.bind(DataView.prototype.getFloat32),
@@ -447,7 +447,7 @@ class CompiledApp {
       ZF: x0 => x0.clientWidth,
       ZG: x0 => x0.selectionEnd,
       ZH: () => globalThis.Intl,
-      ZI: (o, p) => p in o,
+      ZI: (x0,x1) => { x0.withCredentials = x1 },
       ZJ: x0 => x0.hostElement,
       a: (o0, o1, o2, o3) => [o0, o1, o2, o3],
       aB: o => {
@@ -461,7 +461,7 @@ class CompiledApp {
       aF: (x0,x1) => { x0.content = x1 },
       aG: x0 => x0.keyCode,
       aH: (x0,x1) => x0.segment(x1),
-      aI: x0 => x0.groups,
+      aI: (x0,x1) => { x0.responseType = x1 },
       aJ: x0 => x0.location,
       b: (x0,x1,x2) => { x0[x1] = x2 },
       bB: Function.prototype.call.bind(DataView.prototype.getUint32),
@@ -565,7 +565,7 @@ class CompiledApp {
       jG: (x0,x1) => { x0.autocomplete = x1 },
       jH: x0 => x0.Segmenter,
       jI: (x0,x1) => x0.createObjectURL(x1),
-      jJ: (x0,x1) => x0.removeItem(x1),
+      jJ: (x0,x1) => x0.getItem(x1),
       k: o => o,
       kB: o => {
         if (o === null || o === undefined) return 0;
@@ -579,7 +579,7 @@ class CompiledApp {
       kG: (x0,x1) => { x0.name = x1 },
       kH: x0 => x0.buffer,
       kI: x0 => x0.URL,
-      kJ: x0 => x0.localStorage,
+      kJ: (x0,x1,x2,x3) => x0.decrypt(x1,x2,x3),
       l: o => {
         if (o === undefined || o === null) return 0;
         if (typeof o === 'number') return 1;
@@ -593,7 +593,7 @@ class CompiledApp {
       lG: (x0,x1) => { x0.placeholder = x1 },
       lH: x0 => x0.wasmMemory,
       lI: x0 => new Blob(x0),
-      lJ: x0 => x0.sessionStorage,
+      lJ: x0 => x0.subtle,
       m: () => globalThis.Math,
       mB: Function.prototype.call.bind(DataView.prototype.setUint32),
       mC: x0 => x0.vendor,
@@ -608,7 +608,7 @@ class CompiledApp {
       mG: (x0,x1) => { x0.action = x1 },
       mH: () => globalThis.window._flutter_skwasmInstance,
       mI: (x0,x1,x2,x3,x4) => ({type: x0,data: x1,premultiplyAlpha: x2,colorSpaceConversion: x3,preferAnimation: x4}),
-      mJ: () => globalThis.window,
+      mJ: x0 => x0.crypto,
       n: (x0,x1) => x0.prepend(x1),
       nB: Function.prototype.call.bind(DataView.prototype.setInt16),
       nC: (x0,x1) => x0.createTextNode(x1),
@@ -623,7 +623,7 @@ class CompiledApp {
       nG: (x0,x1) => { x0.method = x1 },
       nH: () => new TextDecoder(),
       nI: x0 => new window.ImageDecoder(x0),
-      nJ: (x0,x1) => x0.getItem(x1),
+      nJ: x0 => x0.isSecureContext,
       o: (x0,x1,x2,x3) => x0.addEventListener(x1,x2,x3),
       oB: Function.prototype.call.bind(DataView.prototype.setUint16),
       oC: (x0,x1) => { x0.id = x1 },
@@ -633,7 +633,7 @@ class CompiledApp {
       oG: (x0,x1) => { x0.noValidate = x1 },
       oH: (a, i) => a.splice(i, 1),
       oI: x0 => x0.name,
-      oJ: (x0,x1,x2,x3) => x0.decrypt(x1,x2,x3),
+      oJ: () => globalThis.window,
       p: b => !!b,
       pB: Function.prototype.call.bind(DataView.prototype.setUint8),
       pC: (x0,x1) => { x0.nonce = x1 },
@@ -643,7 +643,7 @@ class CompiledApp {
       pG: (x0,x1) => x0.removeAttribute(x1),
       pH: a => a.pop(),
       pI: x0 => x0.repetitionCount,
-      pJ: x0 => x0.subtle,
+      pJ: (x0,x1,x2,x3,x4,x5,x6,x7) => x0.unwrapKey(x1,x2,x3,x4,x5,x6,x7),
       q: (wasmFunction,f) => finalizeWrapper(f, function(x0) { return wasmFunction(f,arguments.length,x0) }),
       qB: Function.prototype.call.bind(DataView.prototype.setInt8),
       qC: x0 => x0.nonce,
@@ -653,7 +653,7 @@ class CompiledApp {
       qG: x0 => x0.isConnected,
       qH: (map, o, v) => map.set(o, v),
       qI: x0 => x0.frameCount,
-      qJ: x0 => x0.crypto,
+      qJ: (x0,x1,x2,x3,x4,x5) => x0.importKey(x1,x2,x3,x4,x5),
       r: (x0,x1) => x0.focus(x1),
       rB: Function.prototype.call.bind(DataView.prototype.getInt8),
       rC: () => globalThis.window.flutterConfiguration,
@@ -663,7 +663,7 @@ class CompiledApp {
       rG: x0 => x0.click(),
       rH: (map, o) => map.get(o),
       rI: x0 => x0.selectedTrack,
-      rJ: x0 => x0.isSecureContext,
+      rJ: (x0,x1,x2,x3) => x0.generateKey(x1,x2,x3),
       s: () => ({}),
       sB: o => {
         if (o === null || o === undefined) return 0;
@@ -680,7 +680,7 @@ class CompiledApp {
       sG: (x0,x1) => x0.getElementsByClassName(x1),
       sH: () => new WeakMap(),
       sI: x0 => x0.completed,
-      sJ: (x0,x1,x2,x3,x4,x5,x6,x7) => x0.unwrapKey(x1,x2,x3,x4,x5,x6,x7),
+      sJ: (x0,x1,x2,x3,x4) => x0.wrapKey(x1,x2,x3,x4),
       t: (o, p, v) => o[p] = v,
       tB: (o, start, length) => new Float64Array(o.buffer, o.byteOffset + start, length),
       tC: (x0,x1) => x0.createElement(x1),
@@ -695,7 +695,7 @@ class CompiledApp {
       },
       tH: x0 => x0.debugSkipFontRetryDelay,
       tI: x0 => x0.ready,
-      tJ: (x0,x1,x2,x3,x4,x5) => x0.importKey(x1,x2,x3,x4,x5),
+      tJ: (x0,x1,x2) => x0.exportKey(x1,x2),
       u: () => [],
       uB: (o, start, length) => new Float32Array(o.buffer, o.byteOffset + start, length),
       uC: x0 => x0.scale,
@@ -710,7 +710,7 @@ class CompiledApp {
       },
       uH: (x0,x1,x2) => x0.set(x1,x2),
       uI: x0 => x0.tracks,
-      uJ: (x0,x1,x2,x3) => x0.generateKey(x1,x2,x3),
+      uJ: (x0,x1,x2) => x0.setItem(x1,x2),
       v: (a, i) => a.push(i),
       vB: (o, start, length) => new Uint32Array(o.buffer, o.byteOffset + start, length),
       vC: x0 => x0.visualViewport,
@@ -720,7 +720,7 @@ class CompiledApp {
       vG: (x0,x1) => x0.dispatchEvent(x1),
       vH: x0 => x0.fontFallbackBaseUrl,
       vI: x0 => x0.close(),
-      vJ: (x0,x1,x2,x3,x4) => x0.wrapKey(x1,x2,x3,x4),
+      vJ: x0 => x0.localStorage,
       w: x0 => new Int8Array(x0),
       wB: (o, start, length) => new Int32Array(o.buffer, o.byteOffset + start, length),
       wC: x0 => x0.devicePixelRatio,
@@ -730,7 +730,7 @@ class CompiledApp {
       wG: (x0,x1) => x0.createEvent(x1),
       wH: (handle) => clearInterval(handle),
       wI: (x0,x1) => ({frameIndex: x0,completeFramesOnly: x1}),
-      wJ: (x0,x1,x2) => x0.exportKey(x1,x2),
+      wJ: x0 => x0.sessionStorage,
       x: (jsArray, jsArrayOffset, wasmArray, wasmArrayOffset, length) => {
         const getValue = dartInstance.exports.$wasmI8ArrayGet;
         for (let i = 0; i < length; i++) {
@@ -746,7 +746,7 @@ class CompiledApp {
       xH: (ms, c) =>
       setInterval(() => dartInstance.exports.$invokeCallback(c), ms),
       xI: (x0,x1) => x0.decode(x1),
-      xJ: (x0,x1,x2) => x0.setItem(x1,x2),
+      xJ: (x0,x1) => x0.removeItem(x1),
       y: x0 => new Uint8Array(x0),
       yB: (o, start, length) => new Int16Array(o.buffer, o.byteOffset + start, length),
       yC: x0 => x0.width,
